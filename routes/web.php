@@ -2,6 +2,8 @@
 
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\siswaController;
+use App\Http\Controllers\DashboardController;
+use App\Http\Controllers\AuthController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,11 +16,22 @@ use App\Http\Controllers\siswaController;
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-Route::get('/siswa', [siswaController::class, 'index']);
-Route::post('/siswa/create', [siswaController::class, 'create']);
-Route::get('/siswa/{id}/edit', [siswaController::class, 'edit']);
-Route::post('/siswa/{id}/update', [siswaController::class, 'update']);
-Route::get('/siswa/{id}/delete', [siswaController::class, 'delete']);
+Route::get('/login', [AuthController::class, 'login' ])->name('login');
+Route::post('/postlogin',[AuthController::class, 'postlogin' ]);
+Route::get('/logout',[AuthController::class, 'logout' ]);
+
+
+Route::group(['middleware' => 'auth'], function() {
+    Route::get('/dashboard', [DashboardController::class, 'index']);
+    Route::get('/siswa', [siswaController::class, 'index']);
+    Route::post('/siswa/create', [siswaController::class, 'create']);
+    Route::get('/siswa/{id}/edit', [siswaController::class, 'edit']);
+    Route::post('/siswa/{id}/update', [siswaController::class, 'update']);
+    Route::get('/siswa/{id}/delete', [siswaController::class, 'delete']);
+    Route::get('/siswa/{id}/profile', [siswaController::class, 'profile']);
+
+});
+    
