@@ -93,6 +93,11 @@
                             aria-describedby="emailHelp" placeholder="Masukkan Nama Belakang">
                     </div>
                     <div class="form-group">
+                        <label for="exampleInputEmail1">Email</label>
+                        <input name="email" type="email" class="form-control" id="exampleInputEmail1"
+                            aria-describedby="emailHelp" placeholder="Masukkan Email">
+                    </div>
+                    <div class="form-group">
                         <label for="exampleInputEmail1">Nama Ibu</label>
                         <input name="nama_ibu" type="text" class="form-control" id="exampleInputEmail1"
                             aria-describedby="emailHelp" placeholder="Masukkan Nama Ibu">
